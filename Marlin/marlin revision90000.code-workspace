@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\.platformio\\packages\\tool-openocd\\share"
+		},
+		{
+			"name": "Marlin-2.0.9.1",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

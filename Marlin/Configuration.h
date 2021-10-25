@@ -137,7 +137,7 @@
  * Currently only supported for AVR, DUE, LPC1768/9 and STM32/STM32F1
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_3 1
+#define SERIAL_PORT_3 1
 //#define BAUDRATE_3 250000   // Enable to override BAUDRATE
 
 // Enable the Bluetooth serial interface on AT90USB devices
@@ -149,7 +149,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "TwoTrees Sapphire Plus"
+#define CUSTOM_MACHINE_NAME "Holioruless"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -468,7 +468,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 66
 //#define TEMP_SENSOR_1 66
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -497,8 +497,8 @@
 #define TEMP_HYSTERESIS              3  // (°C) Temperature proximity considered "close enough" to the target
 
 #define TEMP_BED_RESIDENCY_TIME     5  // (seconds) Time to wait for bed to "settle" in M190
-#define TEMP_BED_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
-#define TEMP_BED_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
+#define TEMP_BED_WINDOW              3  // (°C) Temperature proximity for the "temperature reached" timer
+#define TEMP_BED_HYSTERESIS          6  // (°C) Temperature proximity considered "close enough" to the target
 
 #define TEMP_CHAMBER_RESIDENCY_TIME 10  // (seconds) Time to wait for chamber to "settle" in M191
 #define TEMP_CHAMBER_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
@@ -550,7 +550,7 @@
 #define HEATER_5_MAXTEMP 275
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      120
+#define BED_MAXTEMP      140
 #define CHAMBER_MAXTEMP  60
 
 /**
@@ -559,8 +559,8 @@
  * (especially before PID tuning). Setting the target temperature too close to MAXTEMP guarantees
  * a MAXTEMP shutdown! Use these values to forbid temperatures being set too close to MAXTEMP.
  */
-#define HOTEND_OVERSHOOT 15   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
-#define BED_OVERSHOOT    10   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
+#define HOTEND_OVERSHOOT  10    // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
+#define BED_OVERSHOOT    5   // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
 #define COOLER_OVERSHOOT  2   // (°C) Forbid temperatures closer than OVERSHOOT
 
 //===========================================================================
@@ -849,7 +849,7 @@
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
 #define E0_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
-#define E1_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
+//#define E1_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -1161,7 +1161,7 @@
  */
 #if ENABLED(SAPPHIRE_PLUS_BLTOUCH)
   // https://www.thingiverse.com/thing:4361883
-  #define NOZZLE_TO_PROBE_OFFSET { 0, 25.0, -0.76 }
+  #define NOZZLE_TO_PROBE_OFFSET { 2, 52, -0.10 }
 #else
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
 #endif
@@ -1220,7 +1220,7 @@
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
-0 * probe points to avoid hitting the bed and other hardware.
+ * probe points to avoid hitting the bed and other hardware.
  * Servo-mounted probes require extra space for the arm to rotate.
  * Inductive probes need space to keep from triggering early.
  *
@@ -1235,13 +1235,13 @@
 #define Z_CLEARANCE_DEPLOY_PROBE    4 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  3 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE     3 // Z Clearance between multiple probes
-#define Z_AFTER_PROBING           5 // Z position after probing is done
+#define Z_AFTER_PROBING           3 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          0 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -1// Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -20
-#define Z_PROBE_OFFSET_RANGE_MAX 20
+#define Z_PROBE_OFFSET_RANGE_MIN -10
+#define Z_PROBE_OFFSET_RANGE_MAX 10
 
 // Enable the M48 repeatability test to test probe accuracy
 #if ENABLED(SAPPHIRE_PLUS_BLTOUCH)
@@ -1274,8 +1274,8 @@
 // Require minimum nozzle and/or bed temperature for probing
 //#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
-  #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define PROBING_BED_TEMP     50
+  #define PROBING_NOZZLE_TEMP 145   // (°C) Only applies to E0 at this time
+  #define PROBING_BED_TEMP     80
 #endif
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -1337,12 +1337,12 @@
  *  - Use a low value (i.e., Z_MIN_POS) if the nozzle falls down to the bed.
  *  - Use a large value (i.e., Z_MAX_POS) if the bed falls down, away from the nozzle.
  */
-#define Z_IDLE_HEIGHT Z_HOME_POS
+#define Z_IDLE_HEIGHT Z_MIN_POS
 
 #define Z_HOMING_HEIGHT  8        // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
-#define Z_AFTER_HOMING  1        // (mm) Height to move to after homing Z
+#define Z_AFTER_HOMING  Z_MIN_POS        // (mm) Height to move to after homing Z
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
@@ -1357,7 +1357,7 @@
 
 // The size of the printable area
 #define X_BED_SIZE 295
-#define Y_BED_SIZE 287 // To stop pulleys hitting stepper mounts
+#define Y_BED_SIZE 298 // To stop pulleys hitting stepper mounts
 
 #define X_MIN_POS -5    // Centre printable area on the bed
 #define Y_MIN_POS 0
@@ -1534,8 +1534,8 @@
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-#define RESTORE_LEVELING_AFTER_G28
-//#define ENABLE_LEVELING_AFTER_G28
+//#define RESTORE_LEVELING_AFTER_G28
+#define ENABLE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
@@ -1543,7 +1543,7 @@
 #define PREHEAT_BEFORE_LEVELING
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
   #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define LEVELING_BED_TEMP     75
+  #define LEVELING_BED_TEMP     80
 #endif
 
 /**
@@ -1551,11 +1551,11 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
   // Set a height for the start of manual adjustment
-  //#define MANUAL_PROBE_START_Z 0.2  // (mm) Comment out to use the last-measured height
+  #define MANUAL_PROBE_START_Z 0.2  // (mm) Comment out to use the last-measured height
 #endif
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
@@ -1630,7 +1630,7 @@
 
   //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
 
-  #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
+  //#define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
   #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
 
   //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
@@ -1670,13 +1670,13 @@
 #define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 35, 35, 65, 65 } // (mm) Left, Front, Right, Back insets
+  #define LEVEL_CORNERS_INSET_LFRB { 55, 55, 65, 65 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.2   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       5.0   // (mm) Z height of nozzle between leveling points
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
   #define LEVEL_CORNERS_USE_PROBE
   #if ENABLED(LEVEL_CORNERS_USE_PROBE)
-    #define LEVEL_CORNERS_PROBE_TOLERANCE 0.1
+    #define LEVEL_CORNERS_PROBE_TOLERANCE 0.2
     #define LEVEL_CORNERS_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
     //#define LEVEL_CORNERS_AUDIO_FEEDBACK
   #endif
@@ -1740,7 +1740,7 @@
 #define HOMING_FEEDRATE_MM_M { (40*60), (40*60), (9*60) }
 
 // Validate that endstops are triggered on homing moves
-#define VALIDATE_HOMING_ENDSTOPS
+//#define VALIDATE_HOMING_ENDSTOPS
 
 // @section calibrate
 
@@ -2719,7 +2719,7 @@
  *   TFT_ROTATE_270, TFT_ROTATE_270_MIRROR_X, TFT_ROTATE_270_MIRROR_Y,
  *   TFT_MIRROR_X, TFT_MIRROR_Y, TFT_NO_ROTATION
  */
-#define TFT_ROTATION TFT_ROTATE_180
+#define TFT_ROTATION TFT_ROTATE_180_
 
 //=============================================================================
 //============================  Other Controllers  ============================
@@ -2746,7 +2746,7 @@
   //#define TOUCH_CALIBRATION_Y -8981
   //#define TOUCH_OFFSET_X        -43
   //#define TOUCH_OFFSET_Y        257
-  #define TOUCH_ORIENTATION TOUCH_LANDSCAPE
+  #define TOUCH_ORIENTATION TOUCH_PORTRAIT
 
   #if BOTH(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)
     #define TOUCH_CALIBRATION_AUTO_SAVE // Auto save successful calibration values to EEPROM
@@ -2804,7 +2804,7 @@
 //#define BARICUDA
 
 // Support for BlinkM/CyzRgb
-#define BLINKM
+//#define BLINKM
 
 // Support for PCA9632 PWM LED driver
 //#define PCA9632
@@ -2848,17 +2848,17 @@
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   #define NEOPIXEL_PIN     PE6     // LED driving pin
-  //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
-  //#define NEOPIXEL2_PIN    5
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
-  #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
-  #define NEOPIXEL_BRIGHTNESS 185  // Initial brightness (0-255)
+  #define NEOPIXEL2_TYPE NEOPIXEL_TYPE
+  #define NEOPIXEL2_PIN   PA13
+  #define NEOPIXEL_PIXELS 16     // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+ #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
+  #define NEOPIXEL_BRIGHTNESS 127  // Initial brightness (0-255)
   #define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
 
   // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
-  //#define NEOPIXEL2_SEPARATE
+  #define NEOPIXEL2_SEPARATE
   #if ENABLED(NEOPIXEL2_SEPARATE)
-    #define NEOPIXEL2_PIXELS      15  // Number of LEDs in the second strip
+    #define NEOPIXEL2_PIXELS      16  // Number of LEDs in the second strip
     #define NEOPIXEL2_BRIGHTNESS 127  // Initial brightness (0-255)
     #define NEOPIXEL2_STARTUP_TEST    // Cycle through colors at startup
   #else
@@ -2866,8 +2866,8 @@
   #endif
 
   // Use some of the NeoPixel LEDs for static (background) lighting
-  #define NEOPIXEL_BKGD_INDEX_FIRST  0              // Index of the first background LED
-  #define NEOPIXEL_BKGD_INDEX_LAST  10              // Index of the last background LED
+  #define NEOPIXEL_BKGD_INDEX_FIRST  6              // Index of the first background LED
+  #define NEOPIXEL_BKGD_INDEX_LAST   10              // Index of the last background LED
   #define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 }  // R, G, B, W
   #define NEOPIXEL_BKGD_ALWAYS_ON                   // Keep the backlight on when other NeoPixels are off
 #endif

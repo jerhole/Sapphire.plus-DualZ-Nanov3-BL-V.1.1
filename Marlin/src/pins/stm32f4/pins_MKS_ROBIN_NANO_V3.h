@@ -56,6 +56,15 @@
 //
 #define SERVO0_PIN                          PA8   // Enable BLTOUCH
 
+
+//
+// Laser Control
+//
+#define SPINDLE_LASER_ENA_PIN             PA3
+#define SPINDLE_LASER_PWM_PIN             PB10
+#define SPINDLE_DIR_PIN                   PA1
+
+
 //
 // Limit Switches
 //
@@ -167,7 +176,7 @@
 #define HEATER_BED_PIN                      PA0   // HOT BED
 
 #define FAN_PIN                             PC14  // FAN
-#define FAN1_PIN                            PB1   // FAN1
+//#define FAN1_PIN                            PB1   // FAN1
 
 //
 // Thermocouples
@@ -180,8 +189,8 @@
 //
 #define MT_DET_1                            PA4
 #define NEOPIXEL                            PE6
-#define PW_DET                              PA13
-#define Z_MIN_PROBE_PIN                              PB2
+#define NEOPIXEL2                           PA13
+#define Z_MIN_PROBE_PIN                     PB2
 
 #ifndef FIL_RUNOUT_PIN
   #define FIL_RUNOUT_PIN                MT_DET_1
@@ -201,7 +210,7 @@
 //#define KILL_PIN                          PA2
 //#define KILL_PIN_INVERTING                true
 
-//#define LED_PIN                           PB2
+#define LED_PIN                           PE6
 
 // Random Info
 #define USB_SERIAL              -1  // USB Serial

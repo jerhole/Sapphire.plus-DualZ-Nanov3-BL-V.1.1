@@ -55,8 +55,10 @@
 #define TFT_ROTATE_270_MIRROR_Y   (TFT_ROTATE_270 ^ TFT_INVERT_X)
 
 // TFT_ROTATION is user configurable
+#define TFT_TOTATION   
+ 
 #ifndef TFT_ROTATION
-  #define TFT_ROTATION TFT_NO_ROTATION
+ #define TFT_ROTATION TFT_ROTATE_180
 #endif
 
 
@@ -88,7 +90,7 @@
   #define TOUCH_OFFSET_Y        0
 #endif
 #ifndef TOUCH_ORIENTATION
-  #define TOUCH_ORIENTATION     TOUCH_LANDSCAPE
+  #define TOUCH_ORIENTATION     TOUCH_PORTRAIT
 #endif
 
 #ifndef TFT_DRIVER

@@ -41,12 +41,12 @@
  * here we define this default string as the date where the latest release
  * version was tagged.
  */
-//#define STRING_DISTRIBUTION_DATE "2021-06-27"
+#define STRING_DISTRIBUTION_DATE "September 2021"
 
 /**
  * Defines a generic printer name to be output to the LCD after booting Marlin.
  */
-//#define MACHINE_NAME "3D Printer"
+#define MACHINE_NAME "Holio Vision"
 
 /**
  * The SOURCE_CODE_URL is the location where users will find the Marlin Source
